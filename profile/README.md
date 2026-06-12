@@ -52,4 +52,4 @@ claim backed by a reproducible benchmark, built in public.
 
 ---
 
-*Writing soon at blog.leocaolab.com*
+*Writing soon at [leocaolab-blog.pages.dev](https://leocaolab-blog.pages.dev)*

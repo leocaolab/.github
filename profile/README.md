@@ -1,7 +1,12 @@
 # leocaolab
 
-Performance-obsessed infrastructure for the AI era — Rust runtimes, AI dev tools,
-and the benchmarks to back the claims. *Don't say it's fast — prove it.*
+**The infrastructure layer for AI-native software — and the benchmarks to prove it.**
+
+Agents need three things production-grade: a runtime fast enough to serve them, a
+way to act on the world, and a way to keep their code honest. That's the lab:
+fast Python served by a Rust core, a Rust-first agent runtime, a browser agents can
+actually read, an AI reviewer that holds the line — each one measured, never just
+claimed. *Don't say it's fast. Prove it.*
 
 ## Projects
 
@@ -30,11 +35,6 @@ interactive element refs, structured JSON — across 5 vision modes.
 - **30/30** extraction eval (vs Jina 20/30), **5/5** E2E (vs browser-use 0/5).
 - **6.2× faster**; ~1ms warm calls via a shared daemon.
 
-### 🏟️ [HttpArena](https://github.com/leocaolab/HttpArena) · benchmarks
-An open HTTP-framework benchmarking platform: 24 test profiles, 64-core dedicated
-hardware, identical conditions for every framework. Live leaderboard at
-[http-arena.com](https://www.http-arena.com/). The "prove it" half of the thesis.
-
 ### 🔍 [arc](https://github.com/leocaolab/getarc) · code review · free
 A.R.C. (Adversarial Resolution Cycle) — a code-review tool where a **Critic** LLM
 files findings and a **Fixer** (Claude / Codex CLI) edits, looping until they
@@ -42,6 +42,19 @@ converge or you step in. Single Rust binary; state in `.arc/` (SQLite + SARIF).
 Free binaries (engine closed-source). An earlier open-source Python version lives
 at [arc-cli](https://github.com/leocaolab/arc-cli).
 
+### 🏟️ [HttpArena](https://github.com/leocaolab/HttpArena) · benchmarks
+An open HTTP-framework benchmarking platform: 24 test profiles, 64-core dedicated
+hardware, identical conditions for every framework. Live leaderboard at
+[http-arena.com](https://www.http-arena.com/). The proving ground.
+
+## How they fit
+
+These aren't five side projects — they're one stack. **Pyronova** serves agent
+workloads at multi-core speed; **TARS** is the runtime those agents run on;
+**SiliconSurfer** is how they read and act on the web; **arc** keeps all of it
+honest by reviewing the code; and **HttpArena** is where the performance claims
+get settled in public. Mostly Rust under the hood, built in public.
+
 ---
 
-*Mostly Rust under the hood · built in public · writing soon at blog.leocaolab.com*
+*Writing soon at blog.leocaolab.com*

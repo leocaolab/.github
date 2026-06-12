@@ -42,18 +42,13 @@ converge or you step in. Single Rust binary; state in `.arc/` (SQLite + SARIF).
 Free binaries (engine closed-source). An earlier open-source Python version lives
 at [arc-cli](https://github.com/leocaolab/arc-cli).
 
-### 🏟️ [HttpArena](https://github.com/leocaolab/HttpArena) · benchmarks
-An open HTTP-framework benchmarking platform: 24 test profiles, 64-core dedicated
-hardware, identical conditions for every framework. Live leaderboard at
-[http-arena.com](https://www.http-arena.com/). The proving ground.
-
 ## How they fit
 
-These aren't five side projects — they're one stack. **Pyronova** serves agent
+These aren't four side projects — they're one stack. **Pyronova** serves agent
 workloads at multi-core speed; **TARS** is the runtime those agents run on;
-**SiliconSurfer** is how they read and act on the web; **arc** keeps all of it
-honest by reviewing the code; and **HttpArena** is where the performance claims
-get settled in public. Mostly Rust under the hood, built in public.
+**SiliconSurfer** is how they read and act on the web; and **arc** keeps all of
+it honest by reviewing the code. Mostly Rust under the hood, every performance
+claim backed by a reproducible benchmark, built in public.
 
 ---
 

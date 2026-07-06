@@ -19,14 +19,12 @@ in a single process — no per-process memory tax of `multiprocessing`.
 - Sustained 400k QPS: **4 MB RSS growth over 73.8M requests** — ~0 B/req, zero leaks.
 
 ### 🤖 [TARS](https://github.com/leocaolab/tars) · Rust · Apache-2.0
-A Rust-first multi-agent LLM runtime. 10+ providers behind one trait, a composable
+A Rust-first multi-agent LLM runtime. A dozen providers behind one trait, a composable
 middleware pipeline, an Agent abstraction you hand tasks to, and Python + Node
 bindings — with observability built in, not bolted on.
 - Typed error hierarchy (`Permanent` / `Retryable` / `RateLimited` / `Auth`).
 - Multi-tenancy enforced at every layer; cache hit/miss observable per call.
 - Same Pipeline runs identically local (in-mem) and in a service (Redis + S3).
-- *If you want to prototype fast, use LangChain. If you want to serve agents in
-  production with the predictability of a database — TARS.*
 
 ### 🏄 [SiliconSurfer](https://github.com/leocaolab/SiliconSurfer) · MCP browser
 An MCP-compatible browser built for LLM agents. Where Playwright MCP dumps 25k

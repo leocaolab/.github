@@ -18,6 +18,19 @@ in a single process — no per-process memory tax of `multiprocessing`.
 - **2.7× Robyn** at equal scale, in **1/3 the memory**.
 - Sustained 400k QPS: **4 MB RSS growth over 73.8M requests** — ~0 B/req, zero leaks.
 
+### 🧊 [isojson](https://github.com/leocaolab/isojson) · Rust
+Fast JSON for Python that works in per-interpreter-GIL sub-interpreters, where
+orjson refuses to load. It keeps orjson's API, and its output is byte-identical
+to orjson's for the types it supports.
+- **~5× orjson's best single-process throughput**: 8 sub-interpreters in one
+  process vs orjson on threads sharing one GIL. **4.3× stdlib `json`** on the
+  same sub-interpreters.
+- **Pure Rust**, with no C anywhere. No override flags, no per-worker copies,
+  and it can be called from any thread.
+- **318/318 JSONTestSuite.** Found a silent data-corruption bug in simd-json,
+  reported it, and sent the fix upstream
+  ([#481](https://github.com/simd-lite/simd-json/issues/481)).
+
 ### 🤖 [TARS](https://github.com/leocaolab/tars) · Rust · Apache-2.0
 A Rust-first multi-agent LLM runtime. A dozen providers behind one trait, a composable
 middleware pipeline, an Agent abstraction you hand tasks to, and Python + Node
@@ -42,10 +55,11 @@ at [arc-cli](https://github.com/leocaolab/arc-cli).
 
 ## How they fit
 
-These aren't four side projects — they're one stack. **Pyronova** serves agent
-workloads at multi-core speed; **TARS** is the runtime those agents run on;
-**SiliconSurfer** is how they read and act on the web; and **arc** keeps all of
-it honest by reviewing the code. Mostly Rust under the hood, every performance
+These aren't five side projects — they're one stack. **Pyronova** serves agent
+workloads at multi-core speed, and **isojson** gives that multi-interpreter
+Python a fast JSON layer that orjson can't provide there; **TARS** is the
+runtime those agents run on; **SiliconSurfer** is how they read and act on the
+web; and **arc** keeps all of it honest by reviewing the code. Mostly Rust under the hood, every performance
 claim backed by a reproducible benchmark, built in public.
 
 ---

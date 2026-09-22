@@ -56,9 +56,9 @@ in a single process — no per-process memory tax of `multiprocessing`.
 Fast JSON for Python that works in per-interpreter-GIL sub-interpreters, where
 orjson refuses to load. It keeps orjson's API, and its output is byte-identical
 to orjson's for the types it supports.
-- **~5× orjson's best single-process throughput**: 8 sub-interpreters in one
-  process vs orjson on threads sharing one GIL. **4.3× stdlib `json`** on the
-  same sub-interpreters.
+- **4–5× orjson's best single-process throughput**: 8 sub-interpreters in one
+  process vs orjson on threads sharing one GIL (3.9× on Linux x86_64, 5.3× on
+  macOS arm64). **~4× stdlib `json`** on the same sub-interpreters.
 - **Pure Rust**, with no C anywhere. No override flags, no per-worker copies,
   and it can be called from any thread.
 - **318/318 JSONTestSuite.** Found a silent data-corruption bug in simd-json,

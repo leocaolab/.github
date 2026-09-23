@@ -65,22 +65,27 @@ to orjson's for the types it supports.
   reported it, and sent the fix upstream
   ([#481](https://github.com/simd-lite/simd-json/issues/481)).
 
-### 🦀 [PyO3, per-interpreter](https://github.com/leocaolab/pyo3/tree/subinterp-per-interpreter-state) · Rust · experimental
-A PyO3 fork that keeps `#[pyclass]` type objects, exception types and module
-objects **per interpreter** instead of in process-global statics. PyO3
-extensions then load in strict own-GIL sub-interpreters, where upstream PyO3
+### 🦀 [PyO3, per-interpreter](https://github.com/leocaolab/pyo3) · Rust · experimental
+A PyO3 fork that moves PyO3's process-global state **per interpreter**:
+`#[pyclass]` and exception types, module objects, the `PyOnceLock` and
+`intern!` caches, and the deferred-decref pool. PyO3 extensions then load
+and run correctly in strict own-GIL sub-interpreters, where upstream PyO3
 rejects them.
 - **1.2× → 9.5× scaling** creating objects on 12 own-GIL workers. Upstream
   shares one type object across all interpreters, so every core contends on
   a single refcount.
-- **polars in 4/4 strict sub-interpreters** (upstream: 0/4, and 1/4 even with
-  the override flag), built from source against the fork. Compared with a
-  copy of polars per worker: **35% less memory, ~80× faster cold start**.
-- Experimental, not production-ready. Stress testing found four open issues,
-  including a cross-interpreter free in PyO3's global reference pool. They
-  are written up in the
-  [journal](https://github.com/leocaolab/pyo3/blob/subinterp-per-interpreter-state/JOURNAL.md),
-  not hidden. **Next: Pyronova moves onto this fork.**
+- **Unmodified polars in 4/4 strict sub-interpreters** (upstream: 0/4, and
+  1/4 even with the override flag), built from source against the fork.
+  Compared with a copy of polars per worker: **35% less memory, ~80× faster
+  cold start**. Its wrong-interpreter results (3 of 4 interpreters) and
+  teardown segfaults (5 in 10 runs) are gone, with no change to polars.
+- Stress testing found four open issues, including a cross-interpreter free
+  in PyO3's global reference pool. Three are fixed. The fourth was mostly a
+  measurement error: import cost is 1.02× upstream, not the 3.7× first
+  reported. In all, **20 defects fixed**, each pinned by a regression test
+  ([bug ledger](https://github.com/leocaolab/pyo3/blob/main/SUBINTERP-FIXES.md#bug-ledger)),
+  and CI runs on every push. Synced with upstream `main`; not yet proposed
+  upstream. **Next: Pyronova moves onto this fork.**
 
 ## How they fit
 

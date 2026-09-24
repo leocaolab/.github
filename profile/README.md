@@ -82,10 +82,17 @@ rejects them.
 - Stress testing found four open issues, including a cross-interpreter free
   in PyO3's global reference pool. Three are fixed. The fourth was mostly a
   measurement error: import cost is 1.02× upstream, not the 3.7× first
-  reported. In all, **20 defects fixed**, each pinned by a regression test
+  reported. In all, **22 defects fixed**, each pinned by a regression test
   ([bug ledger](https://github.com/leocaolab/pyo3/blob/main/SUBINTERP-FIXES.md#bug-ledger)),
-  and CI runs on every push. Synced with upstream `main`; not yet proposed
-  upstream. **Next: Pyronova moves onto this fork.**
+  and CI runs on every push. Synced with upstream `main`; the design and
+  measurements are posted on [PyO3#3451](https://github.com/PyO3/pyo3/issues/3451).
+- **polars Python UDFs in `group_by().agg()` run in the right interpreter.**
+  polars calls them on its own thread pool; upstream PyO3 attaches that thread
+  to the main interpreter. The fork attaches it to the interpreter that loaded
+  that copy of polars: 7/7 UDF paths correct with one copy per worker.
+  [What changes vs upstream, feature by feature](https://github.com/leocaolab/pyo3#how-it-differs-from-upstream-pyo3).
+- **Pyronova runs on it** (v2.7.1+), and since v2.8.0 every worker loads the
+  real Pyronova engine through it.
 
 ## How they fit
 

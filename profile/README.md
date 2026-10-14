@@ -35,6 +35,11 @@ converge or you step in. Single Rust binary; state in `.arc/` (SQLite + SARIF).
 Free binaries (engine closed-source). An earlier open-source Python version lives
 at [arc-cli](https://github.com/leocaolab/arc-cli).
 
+### 🔒 jigbox · agent sandbox · closed-source
+A locked-down Python sandbox for AI agents and RL scoring — code runs isolated,
+no secrets live inside it, and every step is audited. Closed-source; in private
+development.
+
 ## 2 · Multi-interpreter Python
 
 Since PEP 684, every sub-interpreter can have its own GIL. That means N

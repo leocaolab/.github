@@ -49,7 +49,7 @@ safe there, and most of the ecosystem isn't: it stores Python objects in
 process-global state. We build the pieces that make it work: the server, the
 JSON layer, and the Rust binding layer underneath.
 
-### 🔥 [Pyronova](https://github.com/leocaolab/pyronova) · Rust
+### 🔥 [mipyre](https://github.com/leocaolab/mipyre) · Rust
 A high-performance Python web framework powered by a Rust core. Built on
 Per-Interpreter GILs (PEP 684), it runs Python handlers across **every** CPU core
 in a single process — no per-process memory tax of `multiprocessing`.
@@ -96,16 +96,15 @@ rejects them.
   to the main interpreter. The fork attaches it to the interpreter that loaded
   that copy of polars: 7/7 UDF paths correct with one copy per worker.
   [What changes vs upstream, feature by feature](https://github.com/leocaolab/pyo3#how-it-differs-from-upstream-pyo3).
-- **Pyronova runs on it** (v2.7.1+), and since v2.8.0 every worker loads the
-  real Pyronova engine through it.
+- **mipyre runs on it**: every worker loads the mipyre engine through it.
 
 ## How they fit
 
 Two stacks, held to one standard. **TARS** is the runtime agents run on,
 **SiliconSurfer** is how they read and act on the web, and **arc** keeps the
-code honest. Underneath, **Pyronova** serves those workloads on every core of
+code honest. Underneath, **mipyre** serves those workloads on every core of
 one process. **isojson** and the **PyO3 fork** make the libraries it depends
-on safe to run there, and Pyronova's own Rust core is next to move onto the
+on safe to run there, and mipyre's own Rust core is next to move onto the
 fork.
 
 Mostly Rust under the hood. Every performance claim is backed by a

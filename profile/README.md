@@ -53,9 +53,7 @@ JSON layer, and the Rust binding layer underneath.
 A high-performance Python web framework powered by a Rust core. Built on
 Per-Interpreter GILs (PEP 684), it runs Python handlers across **every** CPU core
 in a single process — no per-process memory tax of `multiprocessing`.
-- **902k req/s** pipelined plaintext, **423k** on the standard baseline (8C/16T).
-- **2.7× Robyn** at equal scale, in **1/3 the memory**.
-- Sustained 400k QPS: **4 MB RSS growth over 73.8M requests** — ~0 B/req, zero leaks.
+- **470k req/s** plaintext on **4 cores** (Ryzen 7 7840HS, no pipelining), p99 0.43 ms.
 
 ### 🧊 [isojson](https://github.com/leocaolab/isojson) · Rust
 Fast JSON for Python that works in per-interpreter-GIL sub-interpreters, where
